@@ -10,19 +10,23 @@ const signIn = (url) => {
       // all elements present
       if (elementsToClick.length) {
         // elements have loaded
-        chrome.runtime.sendMessage({
-          action: "updateIcon",
-        });
+        let signInButtonFound = false;
         elementsToClick.forEach((element) => {
           // avoid clicking sign out buttons
           const elementText = element.innerText.toLowerCase();
-          console.log(elementText);
           if (!elementText.includes("out")) {
             element.click();
+            signInButtonFound = true;
           } else {
             clearInterval(intervalID);
           }
         });
+        if (signInButtonFound) {
+          // login was clicked
+          chrome.runtime.sendMessage({
+            action: "updateIcon",
+          });
+        }
       } else {
         clearInterval(intervalID);
       }
