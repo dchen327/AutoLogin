@@ -13,6 +13,7 @@ const signIn = (url) => {
         elementsToClick.forEach((element) => {
           // avoid clicking sign out buttons
           const elementText = element.innerText.toLowerCase();
+          console.log(elementText);
           if (!elementText.includes("out")) {
             element.click();
           } else {
@@ -22,7 +23,7 @@ const signIn = (url) => {
       } else {
         clearInterval(intervalID);
       }
-    }, 1000); // check every second
+    }, 2000); // check every second
   }
 };
 
