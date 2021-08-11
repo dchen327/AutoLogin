@@ -3,9 +3,6 @@ const sites = {
   "https://webauth.claremont.edu": [
     "#list-providers > ul > li:nth-child(1) > a",
   ],
-  "https://portal.hmc.edu": [
-    "#siteNavBar_loginToggle",
-    "#siteNavBar_ctl00_btnLogin",
-  ],
+  "https://portal.hmc.edu": ["#siteNavBar_ctl00_btnLogin"],
   "https://sakai.claremont.edu": ["#loginLink1"],
 };

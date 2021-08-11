@@ -9,22 +9,22 @@ const signIn = (url) => {
     let retryCount = 1;
     var intervalID = setInterval(() => {
       console.log("RUNNING INTERVALS");
-      retryCount--;
+      if (--retryCount <= 0) {
+        clearInterval(intervalID);
+      }
       const elementsToClick = document.querySelectorAll(sites[url]);
       // all elements present
       if (elementsToClick.length === sites[url].length) {
         // elements have loaded
         elementsToClick.forEach((element) => {
           // avoid clicking sign out buttons
-          if (!("out" in element.innerText.toLowerCase())) {
+          const elementText = element.innerText.toLowerCase();
+          if (!elementText.includes("out")) {
             element.click();
           }
         });
-      } else if (retryCount <= 0) {
-        // click processed, no more signin elements
-        clearInterval(intervalID);
       }
-    }, 1000); // check every 300ms
+    }, 1000); // check every second
   }
 };
 
