@@ -6,11 +6,25 @@
 const signIn = (url) => {
   if (url in sites) {
     console.log("IN SITES:", url);
-    const elementsToClick = document.querySelectorAll(sites[url]);
-    console.log(elementsToClick);
-    elementsToClick.forEach((element) => {
-      element.click();
-    });
+    let retryCount = 1;
+    var intervalID = setInterval(() => {
+      console.log("RUNNING INTERVALS");
+      retryCount--;
+      const elementsToClick = document.querySelectorAll(sites[url]);
+      // all elements present
+      if (elementsToClick.length === sites[url].length) {
+        // elements have loaded
+        elementsToClick.forEach((element) => {
+          // avoid clicking sign out buttons
+          if (!("out" in element.innerText.toLowerCase())) {
+            element.click();
+          }
+        });
+      } else if (retryCount <= 0) {
+        // click processed, no more signin elements
+        clearInterval(intervalID);
+      }
+    }, 1000); // check every 300ms
   }
 };
 
