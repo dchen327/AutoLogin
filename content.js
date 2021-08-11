@@ -15,6 +15,8 @@ const signIn = (url) => {
           const elementText = element.innerText.toLowerCase();
           if (!elementText.includes("out")) {
             element.click();
+          } else {
+            clearInterval(intervalID);
           }
         });
       }
