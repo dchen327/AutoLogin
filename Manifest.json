@@ -1,0 +1,19 @@
+{
+    "name": "AutoLogin",
+    "description": "Automatically login to websites",
+    "version": "0.1",
+    "permissions": [
+        "tabs","<all_urls>"
+    ],
+    "content_scripts": [
+        {
+        "matches": [
+            "http://*/*",
+            "https://*/*"
+            ],
+        "js": ["content.js"],
+        "run_at": "document_end"    
+        }
+    ], 
+    "manifest_version": 2
+}
