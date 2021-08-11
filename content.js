@@ -1,14 +1,14 @@
 const signIn = (url) => {
   if (url in sites) {
     let retryCount = 2;
-    var intervalID = setInterval(() => {
+    let intervalID = setInterval(() => {
       if (retryCount-- <= 0) {
         clearInterval(intervalID);
       }
-      console.log("attempt to signin");
+      console.log("attempt to signin", new Date().getSeconds());
       const elementsToClick = document.querySelectorAll(sites[url]);
       // all elements present
-      if (elementsToClick.length === sites[url].length) {
+      if (elementsToClick.length) {
         // elements have loaded
         elementsToClick.forEach((element) => {
           // avoid clicking sign out buttons
@@ -19,6 +19,8 @@ const signIn = (url) => {
             clearInterval(intervalID);
           }
         });
+      } else {
+        clearInterval(intervalID);
       }
     }, 1000); // check every second
   }
