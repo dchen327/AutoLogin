@@ -13,16 +13,16 @@ const signIn = (url) => {
         chrome.runtime.sendMessage({
           action: "updateIcon",
         });
-        // elementsToClick.forEach((element) => {
-        //   // avoid clicking sign out buttons
-        //   const elementText = element.innerText.toLowerCase();
-        //   console.log(elementText);
-        //   if (!elementText.includes("out")) {
-        //     element.click();
-        //   } else {
-        //     clearInterval(intervalID);
-        //   }
-        // });
+        elementsToClick.forEach((element) => {
+          // avoid clicking sign out buttons
+          const elementText = element.innerText.toLowerCase();
+          console.log(elementText);
+          if (!elementText.includes("out")) {
+            element.click();
+          } else {
+            clearInterval(intervalID);
+          }
+        });
       } else {
         clearInterval(intervalID);
       }
