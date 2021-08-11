@@ -9,6 +9,7 @@ const signIn = (url) => {
       const elementsToClick = document.querySelectorAll(sites[url]);
       // all elements present
       if (elementsToClick.length) {
+        chrome.browserAction.setIcon({ default_icon: "icons/login.png" });
         // elements have loaded
         elementsToClick.forEach((element) => {
           // avoid clicking sign out buttons
@@ -17,6 +18,7 @@ const signIn = (url) => {
           if (!elementText.includes("out")) {
             element.click();
           } else {
+            chrome.browserAction.setIcon({ default_icon: "icons/icon.png" });
             clearInterval(intervalID);
           }
         });
@@ -24,6 +26,7 @@ const signIn = (url) => {
         clearInterval(intervalID);
       }
     }, 3000); // check every second
+    console.log("done?");
   }
 };
 

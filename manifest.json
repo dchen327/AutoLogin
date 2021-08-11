@@ -3,7 +3,7 @@
   "description": "Automatically login to websites",
   "version": "0.1",
   "browser_action": {
-    "default_icon": "icons/login.png"
+    "default_icon": "icons/icon.png"
   },
   "content_scripts": [
     {
