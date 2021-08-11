@@ -9,24 +9,24 @@ const signIn = (url) => {
       const elementsToClick = document.querySelectorAll(sites[url]);
       // all elements present
       if (elementsToClick.length) {
-        chrome.browserAction.setIcon({ default_icon: "icons/login.png" });
         // elements have loaded
-        elementsToClick.forEach((element) => {
-          // avoid clicking sign out buttons
-          const elementText = element.innerText.toLowerCase();
-          console.log(elementText);
-          if (!elementText.includes("out")) {
-            element.click();
-          } else {
-            chrome.browserAction.setIcon({ default_icon: "icons/icon.png" });
-            clearInterval(intervalID);
-          }
+        chrome.runtime.sendMessage({
+          action: "updateIcon",
         });
+        // elementsToClick.forEach((element) => {
+        //   // avoid clicking sign out buttons
+        //   const elementText = element.innerText.toLowerCase();
+        //   console.log(elementText);
+        //   if (!elementText.includes("out")) {
+        //     element.click();
+        //   } else {
+        //     clearInterval(intervalID);
+        //   }
+        // });
       } else {
         clearInterval(intervalID);
       }
-    }, 3000); // check every second
-    console.log("done?");
+    }, 3000); // wait in ms before retrying
   }
 };
 
