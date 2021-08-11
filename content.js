@@ -23,7 +23,7 @@ const signIn = (url) => {
       } else {
         clearInterval(intervalID);
       }
-    }, 2000); // check every second
+    }, 3000); // check every second
   }
 };
 
