@@ -1,10 +1,11 @@
 const signIn = (url) => {
   if (url in sites) {
-    let retryCount = 1;
+    let retryCount = 2;
     var intervalID = setInterval(() => {
-      if (--retryCount <= 0) {
+      if (retryCount-- <= 0) {
         clearInterval(intervalID);
       }
+      console.log("attempt to signin");
       const elementsToClick = document.querySelectorAll(sites[url]);
       // all elements present
       if (elementsToClick.length === sites[url].length) {
