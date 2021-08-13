@@ -45,6 +45,7 @@ const deleteSelector = async (e) => {
   let url = await getTabURL();
   let selectors = await getSelectors();
   selectors.splice(index, 1);
+  // update array, or delete if empty
   if (selectors.length > 0) {
     await chrome.storage.sync.set({ [url]: selectors });
   } else {
