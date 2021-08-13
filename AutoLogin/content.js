@@ -81,7 +81,6 @@ const getAllData = () => {
 };
 
 url = location.origin;
-chrome.storage.sync.set({ [url]: ["#loginLink1"] });
 getAllData();
 
 signIn2(url);
