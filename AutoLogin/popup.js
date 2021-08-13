@@ -16,6 +16,23 @@ const getSelectors = async () => {
   });
 };
 
+const setupPopup = async () => {
+  let selectors = await getSelectors();
+  const selectorList = document.getElementById("selectorList");
+  console.log(selectors);
+  // show "None" in list of elements
+  if (selectors.length === 0) selectors.push("None");
+  // render elements in list
+  selectors.forEach((selector) => {
+    let li = `
+    <li>${selector}</li>
+    `;
+    selectorList.insertAdjacentHTML("beforeend", li);
+  });
+};
+
+const deleteSelector = async () => {};
+
 addNewSelector.addEventListener("click", async (e) => {
   e.preventDefault();
   let url = await getTabURL();
@@ -26,19 +43,5 @@ addNewSelector.addEventListener("click", async (e) => {
   await chrome.storage.sync.set({ [url]: selectors });
   window.close();
 });
-
-const setupPopup = async () => {
-  let selectors = await getSelectors();
-  const selectorList = document.getElementById("selectorList");
-  console.log(selectors);
-  // show "None" in list of elements
-  if (selectors.length === 0) selectors.push("None");
-  selectors.forEach((selector) => {
-    let li = document.createElement("li");
-    li.appendChild(document.createTextNode(selector));
-    selectorList.appendChild(li);
-  });
-};
-// TODO: render selectors in popup with delete button
 
 setupPopup();
