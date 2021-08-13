@@ -11,7 +11,7 @@ const getSelectors = async () => {
   let url = await getTabURL();
   return new Promise((resolve, reject) => {
     chrome.storage.sync.get({ [url]: [] }, (res) => {
-      resolve(res[url] + "HELLO");
+      resolve(res[url]);
     });
   });
 };
@@ -19,9 +19,12 @@ const getSelectors = async () => {
 addNewSelector.addEventListener("click", async (e) => {
   e.preventDefault();
   let url = await getTabURL();
-  let selector = selectorInput.value;
+  let newSelector = selectorInput.value;
   selectorInput.value = "";
-  await chrome.storage.sync.set({ [url]: [selector] });
+  let selectors = await getSelectors();
+  selectors.push(newSelector);
+  await chrome.storage.sync.set({ [url]: [selectors] });
+  window.close();
 });
 
 const setupPopup = async () => {
