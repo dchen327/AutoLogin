@@ -34,7 +34,8 @@ const signIn = (url) => {
   }
 };
 
-const signIn2 = (url) => {
+const signIn2 = () => {
+  let url = location.origin;
   chrome.storage.sync.get([url], (res) => {
     if (!(typeof res[url] === "undefined")) {
       let selectors = res[url];
@@ -80,7 +81,5 @@ const getAllData = () => {
   });
 };
 
-url = location.origin;
 getAllData();
-
-signIn2(url);
+signIn2();

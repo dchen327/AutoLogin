@@ -28,7 +28,6 @@ const renderPopup = async () => {
       <td class="has-text-right"><a id=selector${index} row=${index}>[x]</a></td>
     </tr>
     `;
-    // selectorList.insertAdjacentHTML("beforeend", tr);
     newListHTML += tr;
   });
   selectorList.innerHTML = newListHTML; // update HTML
@@ -46,7 +45,11 @@ const deleteSelector = async (e) => {
   let url = await getTabURL();
   let selectors = await getSelectors();
   selectors.splice(index, 1);
-  await chrome.storage.sync.set({ [url]: selectors });
+  if (selectors.length > 0) {
+    await chrome.storage.sync.set({ [url]: selectors });
+  } else {
+    await chrome.storage.sync.remove([url]);
+  }
   await renderPopup();
 };
 
