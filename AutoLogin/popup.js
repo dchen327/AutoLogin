@@ -25,7 +25,7 @@ const setupPopup = async () => {
   // render elements in list
   selectors.forEach((selector) => {
     let li = `
-    <li>${selector}</li>
+    <li id=${selector}>${selector}</li>
     `;
     selectorList.insertAdjacentHTML("beforeend", li);
   });
