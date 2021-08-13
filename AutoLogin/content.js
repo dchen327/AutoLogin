@@ -3,7 +3,7 @@ const signIn = () => {
   chrome.storage.sync.get([url], (res) => {
     if (!(typeof res[url] === "undefined")) {
       let selectors = res[url];
-      let retryCount = 2;
+      let retryCount = 3;
       let intervalID = setInterval(() => {
         if (retryCount-- <= 0) {
           clearInterval(intervalID);
