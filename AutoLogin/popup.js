@@ -25,7 +25,7 @@ const renderPopup = async () => {
     let tr = `
     <tr>
       <td>${selector}</td>
-      <td><a id=selector${index} row=${index}>[x]</a></td>
+      <td class="has-text-right"><a id=selector${index} row=${index}>[x]</a></td>
     </tr>
     `;
     // selectorList.insertAdjacentHTML("beforeend", tr);
