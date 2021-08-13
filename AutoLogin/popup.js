@@ -32,7 +32,7 @@ const setupPopup = async () => {
   const selectorList = document.getElementById("selectorList");
   console.log(selectors);
   // show "None" in list of elements
-  if (!selectors) selectors.push("None");
+  if (selectors.length === 0) selectors.push("None");
   selectors.forEach((selector) => {
     let li = document.createElement("li");
     li.appendChild(document.createTextNode(selector));
