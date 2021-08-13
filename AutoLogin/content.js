@@ -25,7 +25,10 @@ const signIn = () => {
               signInButtonFound = false; // ignore others
               return false; // break out of loop
             } else {
-              element.click();
+              try {
+                // might give an error if element has inline js, so wrap in try/catch
+                element.click();
+              } catch (error) {}
               signInButtonFound = true;
               return true; // continue the every()
             }
