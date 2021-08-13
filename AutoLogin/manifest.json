@@ -1,6 +1,6 @@
 {
   "name": "AutoLogin",
-  "version": "0.1",
+  "version": "0.0.1",
   "description": "Automatically login to websites",
   "permissions": ["alarms", "storage", "tabs"],
   "icons": {
