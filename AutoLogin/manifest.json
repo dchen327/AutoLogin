@@ -2,7 +2,7 @@
   "name": "AutoLogin",
   "version": "0.1",
   "description": "Automatically login to websites",
-  "permissions": ["alarms", "storage"],
+  "permissions": ["alarms", "storage", "tabs"],
   "icons": {
     "48": "icons/icon48.png",
     "128": "icons/icon128.png"
