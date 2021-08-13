@@ -9,9 +9,10 @@ const getTabURL = async () => {
 
 const getSelectors = async () => {
   let url = await getTabURL();
-  chrome.storage.sync.get({ [url]: [] }, (res) => {
-    let selectors = res[url];
-    alert(selectors);
+  return new Promise((resolve, reject) => {
+    chrome.storage.sync.get({ [url]: [] }, (res) => {
+      resolve(res[url] + "HELLO");
+    });
   });
 };
 
@@ -19,8 +20,14 @@ addNewSelector.addEventListener("click", async (e) => {
   e.preventDefault();
   let url = await getTabURL();
   let selector = selectorInput.value;
-  // chrome.storage.sync.set({[url]: [selector]})
   selectorInput.value = "";
+  await chrome.storage.sync.set({ [url]: [selector] });
 });
 
-getSelectors();
+const setupPopup = async () => {
+  let selectors = await getSelectors();
+  alert(selectors);
+};
+// TODO: render selectors in popup with delete button
+
+setupPopup();
