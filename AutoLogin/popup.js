@@ -39,6 +39,20 @@ const renderPopup = async () => {
       .getElementById(`selector${index}`)
       ?.addEventListener("click", deleteSelector);
   }
+  chrome.storage.sync.get({ enabled: true }, (res) => {
+    let enabled = res.enabled;
+    if (enabled) {
+      // show red disable button
+      toggleSelector.classList.remove("is-success");
+      toggleSelector.classList.add("is-danger");
+      toggleSelector.innerHTML = "Disable";
+    } else {
+      // show green enable button
+      toggleSelector.classList.remove("is-danger");
+      toggleSelector.classList.add("is-success");
+      toggleSelector.innerHTML = "Enable";
+    }
+  });
 };
 
 const deleteSelector = async (e) => {
@@ -75,7 +89,6 @@ toggleSelector.addEventListener("click", () => {
   chrome.storage.sync.set({ enabled: false });
   toggleSelector.classList.remove("is-danger");
   toggleSelector.classList.add("is-success");
-  toggleSelector.innerHTML = "Enable";
 });
 
 renderPopup();
