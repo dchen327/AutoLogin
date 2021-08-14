@@ -5,9 +5,10 @@ const signIn = () => {
       let selectors = res[url];
       let retryCount = 10;
       let maxRetries = retryCount;
+      clickElements(selectors, "", retryCount--, maxRetries);
       let intervalID = setInterval(() => {
         clickElements(selectors, intervalID, retryCount--, maxRetries);
-      }, 3000);
+      }, 2000);
     }
   });
 };
@@ -32,7 +33,10 @@ const clickElements = (selectors, intervalID, retryCount, maxRetries) => {
       } else {
         try {
           // might give an error if element has inline js, so wrap in try/catch
-          element.click();
+          setTimeout(() => {
+            // small timeout before click
+            element.click();
+          }, 250);
         } catch (error) {}
         signInButtonFound = true;
         return true; // continue the every()
@@ -46,7 +50,7 @@ const clickElements = (selectors, intervalID, retryCount, maxRetries) => {
     } else {
       clearInterval(intervalID);
     }
-  } else if (maxRetries - retryCount >= 1) {
+  } else if (maxRetries - retryCount >= 2) {
     // element isn't present and page should be done loading
     clearInterval(intervalID);
   }
