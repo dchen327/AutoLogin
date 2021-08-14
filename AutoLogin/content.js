@@ -15,10 +15,9 @@ const signIn = () => {
         );
         // all elements present
         if (elementsToClick.length) {
-          // elements have loaded
           let signInButtonFound = false;
           elementsToClick.every((element) => {
-            // avoid clicking sign out buttons
+            // avoid clicking sign out buttons (this needs improvement but idk how)
             const elementText = element.innerText.toLowerCase();
             if (elementText.includes("out")) {
               clearInterval(intervalID);
