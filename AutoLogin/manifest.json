@@ -1,8 +1,8 @@
 {
   "name": "AutoLogin",
   "version": "0.0.1",
-  "description": "Automatically login to websites without storing passwords",
-  "permissions": ["alarms", "storage", "tabs"],
+  "description": "Automatically login to websites after Chrome autofill",
+  "permissions": ["storage", "tabs"],
   "icons": {
     "48": "icons/icon48.png",
     "128": "icons/icon128.png"
