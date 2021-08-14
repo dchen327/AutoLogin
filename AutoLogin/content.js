@@ -47,4 +47,6 @@ const signIn = () => {
   });
 };
 
-signIn();
+chrome.storage.sync.get({ enabled: true }, (res) => {
+  if (res.enabled) signIn();
+});
