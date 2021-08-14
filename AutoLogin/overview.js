@@ -9,34 +9,14 @@ const renderSelectorList = async () => {
       selectors.forEach((selector) => {
         let tr = `
           <tr>
-            <td>${selector}</td>
-            <td class="has-text-right"><a id=selector${row} row=${row}>[x]</a></td>
+            <td id}>${selector}</td>
           </tr>
         `;
         selectorList.insertAdjacentHTML("beforeend", tr);
-        // link delete function
-        document
-          .getElementById(`selector${row}`)
-          ?.addEventListener("click", deleteSelector);
         row++;
       });
     }
   });
-};
-
-const deleteSelector = async (e) => {
-  e.preventDefault();
-  let index = e.target.attributes.row.value;
-  let url = await getTabURL();
-  let selectors = await getSelectors();
-  selectors.splice(index, 1);
-  // update array, or delete if empty
-  if (selectors.length > 0) {
-    await chrome.storage.sync.set({ [url]: selectors });
-  } else {
-    await chrome.storage.sync.remove([url]);
-  }
-  await renderSelectorList();
 };
 
 renderSelectorList();
