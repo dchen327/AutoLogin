@@ -3,7 +3,7 @@ const signIn = () => {
   chrome.storage.sync.get([url], (res) => {
     if (!(typeof res[url] === "undefined")) {
       let selectors = res[url];
-      let retryCount = 10;
+      let retryCount = 3;
       let maxRetries = retryCount;
       clickElements(selectors, "", retryCount--, maxRetries);
       let intervalID = setInterval(() => {
@@ -14,12 +14,11 @@ const signIn = () => {
 };
 
 const clickElements = (selectors, intervalID, retryCount, maxRetries) => {
-  console.log("retryCount: ", retryCount);
   if (retryCount <= 0) clearInterval(intervalID);
   // grab elements, convert to array to use .every()
   const elementsToClick = Array.from(document.querySelectorAll(selectors));
-  console.log("attempt to signin: ", new Date().getSeconds());
-  console.log("elements", elementsToClick);
+  // console.log("attempt to signin: ", new Date().getSeconds());
+  // console.log("elements", elementsToClick);
   // all elements present
   if (elementsToClick.length) {
     let signInButtonFound = false;
