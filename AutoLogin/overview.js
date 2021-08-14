@@ -3,6 +3,8 @@ const renderSelectorList = async () => {
   chrome.storage.sync.get(null, (allData) => {
     let row = 0;
     for (const [url, selectors] of Object.entries(allData)) {
+      // ignore toggle state data
+      if (url === "enabled") continue;
       const websiteLabel = `<a href=${url} class="pt-1 has-text-weight-semibold" target="_blank">${url}</a>`;
       selectorList.insertAdjacentHTML("beforeend", websiteLabel);
       // render selectors in list

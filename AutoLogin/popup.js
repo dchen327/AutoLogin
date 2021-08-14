@@ -1,6 +1,7 @@
 const selectorInput = document.getElementById("selectorInput");
 const addNewSelector = document.getElementById("addNewSelector");
 const viewSettingsSelector = document.getElementById("viewSettings");
+const toggleSelector = document.getElementById("toggleAutoLogin");
 
 // grab the base URL (to use as key in storage)
 const getTabURL = async () => {
@@ -68,6 +69,13 @@ addNewSelector.addEventListener("click", async (e) => {
 
 viewSettingsSelector.addEventListener("click", () => {
   chrome.tabs.create({ url: "overview.html" });
+});
+
+toggleSelector.addEventListener("click", () => {
+  chrome.storage.sync.set({ enabled: false });
+  toggleSelector.classList.remove("is-danger");
+  toggleSelector.classList.add("is-success");
+  toggleSelector.innerHTML = "Enable";
 });
 
 renderPopup();
