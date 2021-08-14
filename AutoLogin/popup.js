@@ -1,5 +1,6 @@
 const selectorInput = document.getElementById("selectorInput");
 const addNewSelector = document.getElementById("addNewSelector");
+const viewSettingsSelector = document.getElementById("viewSettings");
 
 // grab the base URL (to use as key in storage)
 const getTabURL = async () => {
@@ -63,6 +64,10 @@ addNewSelector.addEventListener("click", async (e) => {
   selectors.push(newSelector);
   await chrome.storage.sync.set({ [url]: selectors });
   await renderPopup();
+});
+
+viewSettingsSelector.addEventListener("click", () => {
+  chrome.tabs.create({ url: "overview.html" });
 });
 
 renderPopup();

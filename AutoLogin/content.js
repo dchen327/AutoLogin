@@ -47,10 +47,4 @@ const signIn = () => {
   });
 };
 
-const getAllData = () => {
-  chrome.storage.sync.get(null, (all) => {
-    console.log(all);
-  });
-};
-
 signIn();

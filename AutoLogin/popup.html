@@ -14,22 +14,25 @@
         <table class="table is-hoverable pd-3">
           <tbody id="selectorList"></tbody>
         </table>
-      </div>
-      <form autocomplete="off">
-        <div class="field has-addons has-addons-fullwidth">
-          <div class="control">
-            <input
-              id="selectorInput"
-              class="input"
-              type="text"
-              placeholder="CSS Selector"
-            />
+        <form autocomplete="off">
+          <div class="field has-addons has-addons-fullwidth">
+            <div class="control">
+              <input
+                id="selectorInput"
+                class="input"
+                type="text"
+                placeholder="CSS Selector"
+              />
+            </div>
+            <button id="addNewSelector" type="submit" class="button is-primary">
+              Add
+            </button>
           </div>
-          <button id="addNewSelector" type="submit" class="button is-primary">
-            Add
-          </button>
+        </form>
+        <div class="content pt-2 has-text-centered">
+          <a id="viewSettings">View/Edit all settings</a>
         </div>
-      </form>
+      </div>
     </div>
     <script src="popup.js"></script>
   </body>
