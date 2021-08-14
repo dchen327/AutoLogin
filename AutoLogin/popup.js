@@ -39,9 +39,12 @@ const renderPopup = async () => {
       .getElementById(`selector${index}`)
       ?.addEventListener("click", deleteSelector);
   }
-  chrome.storage.sync.get({ enabled: true }, (res) => {
-    let enabled = res.enabled;
-    if (enabled) {
+  await renderToggleButton();
+};
+
+const renderToggleButton = async () => {
+  await chrome.storage.sync.get({ enabled: true }, (res) => {
+    if (res.enabled) {
       // show red disable button
       toggleSelector.classList.remove("is-success");
       toggleSelector.classList.add("is-danger");
@@ -85,10 +88,12 @@ viewSettingsSelector.addEventListener("click", () => {
   chrome.tabs.create({ url: "overview.html" });
 });
 
-toggleSelector.addEventListener("click", () => {
-  chrome.storage.sync.set({ enabled: false });
-  toggleSelector.classList.remove("is-danger");
-  toggleSelector.classList.add("is-success");
+toggleSelector.addEventListener("click", async () => {
+  // toggle enabled state
+  await chrome.storage.sync.get({ enabled: true }, (res) => {
+    chrome.storage.sync.set({ enabled: !res.enabled });
+    renderToggleButton();
+  });
 });
 
 renderPopup();
