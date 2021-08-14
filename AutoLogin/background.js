@@ -4,6 +4,6 @@ chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
     // change back to default icon after a delay
     setTimeout(() => {
       chrome.action.setIcon({ path: "icons/icon128.png" });
-    }, 5000);
+    }, 8000);
   }
 });
