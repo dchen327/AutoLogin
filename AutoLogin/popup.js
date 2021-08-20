@@ -27,9 +27,35 @@ const renderPopup = async () => {
     let tr = `
     <tr>
       <td>${selector.element}</td>
-      <td class="has-text-right"><a id=selector${index} row=${index}>[x]</a>
-      Delay: ${selector.delay}ms
-      Retries: ${selector.retries}</td>
+      <td class="has-text-right"><a id=selector${index} row=${index}>[x]</a></td>
+    </tr>
+    <tr>
+      <td class="is-inline-flex-mobile">
+        <div class="field is-horizontal is-inline-flex-mobile">
+          <div class="field-label is-tiny">
+            <label class="label pr-2" style="white-space: nowrap">Delay (ms):</label>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <div class="control">
+                <input class="input is-small" type="number" step=100 value=${selector.delay}>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="field is-horizontal is-inline-flex-mobile">
+          <div class="field-label is-small">
+            <label class="label px-2">Retries:</label>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <div class="control">
+                <input class="input is-small" type="number" value=${selector.retries}>
+              </div>
+            </div>
+          </div>
+        </div>
+      </td>
     </tr>
     `;
     newListHTML += tr;
