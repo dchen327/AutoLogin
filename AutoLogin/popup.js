@@ -56,6 +56,7 @@ const renderPopup = async () => {
           </div>
         </div>
       </td>
+      <td class="has-text-right"><a id=edit${index} row=${index}>[Save]</a></td>
     </tr>
     `;
     newListHTML += tr;
@@ -66,6 +67,9 @@ const renderPopup = async () => {
     document
       .getElementById(`selector${index}`)
       ?.addEventListener("click", deleteSelector);
+    document
+      .getElementById(`edit${index}`)
+      ?.addEventListener("click", saveEdits);
   }
   await renderToggleButton();
 };
@@ -84,6 +88,12 @@ const renderToggleButton = async () => {
       toggleSelector.innerHTML = "Enable";
     }
   });
+};
+
+const saveEdits = async () => {
+  e.preventDefault();
+  let index = e.target.attributes.row.value;
+  console.log("index:", index);
 };
 
 const deleteSelector = async (e) => {
