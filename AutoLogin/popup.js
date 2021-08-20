@@ -26,10 +26,13 @@ const renderPopup = async () => {
   selectors.forEach((selector, index) => {
     let tr = `
     <tr>
-      <td>${selector}</td>
-      <td class="has-text-right"><a id=selector${index} row=${index}>[x]</a></td>
-    </tr>
-    `;
+      <td>${selector.element}</td>
+      <td class="has-text-right"><a id=selector${index} row=${index}>[x]</a>
+      Delay: ${selector.delay}ms
+      Retries: ${selector.retries}</td>
+      </tr>
+      `;
+    // <td>Delay: ${selector.delay}</td>
     newListHTML += tr;
   });
   selectorList.innerHTML = newListHTML; // update HTML
