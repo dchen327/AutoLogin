@@ -6,10 +6,12 @@ const signIn = () => {
       // contains element, retries, and delay
       let retryCount = selectorInfo.retries;
       let maxRetries = retryCount;
-      clickElements(selectorInfo, "", retryCount--, maxRetries);
-      let intervalID = setInterval(() => {
-        clickElements(selectorInfo, intervalID, retryCount--, maxRetries);
-      }, 2000);
+      setTimeout(() => {
+        clickElements(selectorInfo, "", retryCount--, maxRetries);
+        let intervalID = setInterval(() => {
+          clickElements(selectorInfo, intervalID, retryCount--, maxRetries);
+        }, 2000);
+      }, selectorInfo.delay);
     }
   });
 };
