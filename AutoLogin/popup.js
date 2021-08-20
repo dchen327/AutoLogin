@@ -119,7 +119,7 @@ addNewSelector.addEventListener("click", async (e) => {
   let selectors = await getSelectors();
   selectors.push({
     element: newSelector,
-    retries: 1,
+    retries: 2,
     delay: 0,
   });
   await chrome.storage.sync.set({ [url]: selectors });
