@@ -38,19 +38,19 @@ const renderPopup = async () => {
           <div class="field-body">
             <div class="field">
               <div class="control">
-                <input class="input is-small" type="number" step=100 value=${selector.delay}>
+                <input class="input is-small" type="number" step=100 min=0 value=${selector.delay}>
               </div>
             </div>
           </div>
         </div>
         <div class="field is-horizontal is-inline-flex-mobile">
           <div class="field-label is-small">
-            <label class="label px-2">Retries:</label>
+            <label class="label px-2">Retry:</label>
           </div>
           <div class="field-body">
             <div class="field">
               <div class="control">
-                <input class="input is-small" type="number" value=${selector.retries}>
+                <input class="input is-small" type="number" min=0 max=5 value=${selector.retries}>
               </div>
             </div>
           </div>
