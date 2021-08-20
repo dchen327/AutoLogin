@@ -38,7 +38,7 @@ const renderPopup = async () => {
           <div class="field-body">
             <div class="field">
               <div class="control">
-                <input class="input is-small" type="number" step=100 min=0 value=${selector.delay}>
+                <input id=delay${index} class="input is-small" type="number" step=100 min=0 value=${selector.delay}>
               </div>
             </div>
           </div>
@@ -50,7 +50,7 @@ const renderPopup = async () => {
           <div class="field-body">
             <div class="field">
               <div class="control">
-                <input class="input is-small" type="number" min=0 max=5 value=${selector.retries}>
+                <input id=retry${index} class="input is-small" type="number" min=0 max=5 value=${selector.retries}>
               </div>
             </div>
           </div>
@@ -90,10 +90,18 @@ const renderToggleButton = async () => {
   });
 };
 
-const saveEdits = async () => {
+const saveEdits = async (e) => {
   e.preventDefault();
-  let index = e.target.attributes.row.value;
-  console.log("index:", index);
+  let url = await getTabURL();
+  const index = e.target.attributes.row.value;
+  const delay = document.querySelector(`#delay${index}`).value;
+  const retries = document.querySelector(`#retry${index}`).value;
+  let selectors = await getSelectors();
+  console.log(selectors);
+  selectors[index].delay = parseInt(delay);
+  selectors[index].retries = parseInt(retries);
+  console.log(selectors);
+  await chrome.storage.sync.set({ [url]: selectors });
 };
 
 const deleteSelector = async (e) => {

@@ -5,7 +5,7 @@ const signIn = () => {
       let selectorInfo = res[url];
       for (let selector of selectorInfo) {
         // contains element, retries, and delay
-        // let retryCount = selector.retries;
+        let retryCount = selector.retries;
         let maxRetries = retryCount;
         setTimeout(() => {
           // delay before 1st click
@@ -31,7 +31,6 @@ const clickElement = (selector, intervalID, retryCount, maxRetries) => {
   // grab element
   const element = document.querySelector(selector);
   console.log("attempt to click: ", element, new Date().getSeconds());
-  console.log("elements", element);
   // all elements present
   if (element !== null) {
     // avoid clicking sign out buttons (this needs improvement but idk how)
