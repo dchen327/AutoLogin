@@ -2,23 +2,25 @@ const signIn = () => {
   let url = location.origin;
   chrome.storage.sync.get([url], (res) => {
     if (!(typeof res[url] === "undefined")) {
-      let selectors = res[url];
-      let retryCount = 3;
+      let selectorInfo = res[url];
+      // contains element, retries, and delay
+      let retryCount = selectorInfo.retries;
       let maxRetries = retryCount;
-      clickElements(selectors, "", retryCount--, maxRetries);
+      clickElements(selectorInfo, "", retryCount--, maxRetries);
       let intervalID = setInterval(() => {
-        clickElements(selectors, intervalID, retryCount--, maxRetries);
+        clickElements(selectorInfo, intervalID, retryCount--, maxRetries);
       }, 2000);
     }
   });
 };
 
-const clickElements = (selectors, intervalID, retryCount, maxRetries) => {
+const clickElements = (selectorInfo, intervalID, retryCount, maxRetries) => {
   if (retryCount <= 0) clearInterval(intervalID);
+  const selectors = selectorInfo.map((item) => item.element);
   // grab elements, convert to array to use .every()
   const elementsToClick = Array.from(document.querySelectorAll(selectors));
-  // console.log("attempt to signin: ", new Date().getSeconds());
-  // console.log("elements", elementsToClick);
+  console.log("attempt to signin: ", new Date().getSeconds());
+  console.log("elements", elementsToClick);
   // all elements present
   if (elementsToClick.length) {
     let signInButtonFound = false;
