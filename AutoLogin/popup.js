@@ -30,9 +30,8 @@ const renderPopup = async () => {
       <td class="has-text-right"><a id=selector${index} row=${index}>[x]</a>
       Delay: ${selector.delay}ms
       Retries: ${selector.retries}</td>
-      </tr>
-      `;
-    // <td>Delay: ${selector.delay}</td>
+    </tr>
+    `;
     newListHTML += tr;
   });
   selectorList.innerHTML = newListHTML; // update HTML
