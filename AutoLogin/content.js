@@ -17,6 +17,7 @@ const signIn = () => {
 };
 
 const clickElements = (selectorInfo, intervalID, retryCount, maxRetries) => {
+  console.log("retry count: " + retryCount);
   if (retryCount <= 0) clearInterval(intervalID);
   const selectors = selectorInfo.map((item) => item.element);
   // grab elements, convert to array to use .every()
