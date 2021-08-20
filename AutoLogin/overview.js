@@ -6,18 +6,29 @@ const renderSelectorList = async () => {
     for (const [url, selectors] of Object.entries(allData)) {
       // ignore toggle state data
       if (url === "enabled") continue;
-      const websiteLabel = `<a href=${url} class="pt-1 has-text-weight-semibold" target="_blank">${url}</a>`;
-      selectorList.insertAdjacentHTML("beforeend", websiteLabel);
-      // render selectors in list
-      selectors.forEach((selector) => {
-        let tr = `
-          <tr>
-            <td id}>${selector}</td>
-          </tr>
-        `;
-        selectorList.insertAdjacentHTML("beforeend", tr);
-        row++;
-      });
+      for (let [i, selector] of selectors.entries()) {
+        if (typeof selector === "string") {
+          selectors[i] = {
+            element: selector,
+            retries: 1,
+            delay: 0,
+          };
+        }
+      }
+      chrome.storage.sync.set({ [url]: selectors });
+
+      // const websiteLabel = `<a href=${url} class="pt-1 has-text-weight-semibold" target="_blank">${url}</a>`;
+      // selectorList.insertAdjacentHTML("beforeend", websiteLabel);
+      // // render selectors in list
+      // selectors.forEach((selector) => {
+      //   let tr = `
+      //     <tr>
+      //       <td id}>${selector}</td>
+      //     </tr>
+      //   `;
+      //   selectorList.insertAdjacentHTML("beforeend", tr);
+      //   row++;
+      // });
     }
   });
 };
