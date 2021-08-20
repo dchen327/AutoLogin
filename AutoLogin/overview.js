@@ -1,6 +1,7 @@
 const renderSelectorList = async () => {
   const selectorList = document.getElementById("selectorList");
   chrome.storage.sync.get(null, (allData) => {
+    console.log(allData);
     let row = 0;
     for (const [url, selectors] of Object.entries(allData)) {
       // ignore toggle state data
