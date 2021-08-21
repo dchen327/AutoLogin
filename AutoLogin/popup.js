@@ -30,7 +30,7 @@ const renderPopup = async () => {
       <td class="has-text-right"><a id=selector${index} row=${index}>[x]</a></td>
     </tr>
     <tr>
-      <td class="is-inline-flex-mobile">
+      <td>
         <div class="field is-horizontal is-inline-flex-mobile">
           <div class="field-label is-tiny">
             <label class="label pr-2" style="white-space: nowrap">Delay (ms):</label>
@@ -45,7 +45,7 @@ const renderPopup = async () => {
         </div>
         <div class="field is-horizontal is-inline-flex-mobile">
           <div class="field-label is-small">
-            <label class="label px-2">Retry:</label>
+            <label class="label pr-2">Retry:</label>
           </div>
           <div class="field-body">
             <div class="field">
