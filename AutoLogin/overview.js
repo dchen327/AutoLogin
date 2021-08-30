@@ -12,7 +12,7 @@ const renderSelectorList = async () => {
       selectorInfo.forEach((selector) => {
         let tr = `
           <tr>
-            <td id}>${selector.element}</td>
+            <td>${selector.element}</td>
             <td align="center">Delay: ${selector.delay}ms</td>
             <td align="center">Retries: ${selector.retries}</td>
           </tr>
